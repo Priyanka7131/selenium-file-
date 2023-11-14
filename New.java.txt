@@ -1,0 +1,52 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BookMyShowAutomation {
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Create a new instance of the ChromeDriver
+        WebDriver driver = new ChromeDriver();
+
+        // Step 1: Open BookMyShow Website
+        driver.get("https://in.bookmyshow.com/explore/home/");
+
+        // Step 2: Select Bengaluru if city is asked
+        // (Assuming there is a condition to check if the city is asked)
+
+        // Step 3: Click on Sign In
+        WebElement signInButton = driver.findElement(By.linkText("Sign In"));
+        signInButton.click();
+
+        // Step 4: Click on Continue with Email
+        WebElement continueWithEmailButton = driver.findElement(By.xpath("//button[contains(text(),'Continue with Email')]"));
+        continueWithEmailButton.click();
+
+        // Step 5: Enter email and continue
+        WebElement emailInput = driver.findElement(By.id("email"));
+        emailInput.sendKeys("selauto@yopmail.com");
+
+        WebElement continueButton = driver.findElement(By.xpath("//button[contains(text(),'Continue')]"));
+        continueButton.click();
+
+        // Step 6: Go to Yopmail.com and fetch the OTP
+        // (Assuming the user navigates to Yopmail.com in a new tab/window)
+
+        // Step 7: Come back to Sign in Page and enter OTP
+        // (Assuming the user switches back to the original tab/window)
+
+        // Step 8: Validate user is successfully signed in
+        WebElement hiGuestMessage = driver.findElement(By.xpath("//div[contains(text(),'Hi, Guest')]"));
+        if (hiGuestMessage.isDisplayed()) {
+            System.out.println("Test Passed: User is successfully signed in.");
+        } else {
+            System.out.println("Test Failed: User sign-in unsuccessful.");
+        }
+
+        // Close the browser
+        driver.quit();
+    }
+}
